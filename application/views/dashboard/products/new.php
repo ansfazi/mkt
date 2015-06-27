@@ -22,7 +22,7 @@
             <div class="message"></div>
             <hr>
             <!--   -->
-            <form enctype="multipart/form-data" role="form" class="form-horizontal" id="new_product" action="<?php echo site_url(API.'products/new') ?>" method="post">
+            <form enctype="multipart/form-data" role="form" class="form-horizontal" id="new_product" action="<?php echo site_url(API . 'products/new') ?>" method="post">
                 <div class="row">
                     <div class="col-md-12">
                         <p>
@@ -65,7 +65,10 @@
                             <div class="col-sm-3    ">
                                 <input type="text" name="vender" class="form-control" id="field-3" placeholder="vender">
                             </div>
-                            <?php $outlets=$this->session->userdata('outlets'); echo form_hidden('outlet_id', $outlets[0]->id ); ?>
+                            <?php
+                            $outlets = $this->session->userdata('outlets');
+                            echo form_hidden('outlet_id', $outlets[0]->id);
+                            ?>
 
                         </div>
                     </div>
@@ -78,7 +81,7 @@
                                 <input type="text" class="form-control" id="field-2" placeholder="">
                             </div>
                             <div class="col-sm-2">
-                                
+
                             </div>
                         </div>
                     </div>
@@ -237,7 +240,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h4>Additional Information</h4>
-                            Specify Size, Color and Material of the Iteam
+                        Specify Size, Color and Material of the Iteam
                         <hr>
                     </div>
 
@@ -276,7 +279,7 @@
                     </div>
 
                 </div>
-               
+
 
         </div>
         <div class="row">
@@ -300,74 +303,74 @@
 </div>
 
 <script type="text/javascript">
-$(document).ready(function() {
-    $('#title').blur(function() {
-        title = $('#title').val();
-        keywords = (title.match(/\w+|"[^"]+"/g));
-        $.each(keywords, function(key, word) {
-            if (word.length > 3)
-                $('#tags').tagsinput('add', word);
-        });
+    $(document).ready(function () {
+        $('#title').blur(function () {
+            title = $('#title').val();
+            keywords = (title.match(/\w+|"[^"]+"/g));
+            $.each(keywords, function (key, word) {
+                if (word.length > 3)
+                    $('#tags').tagsinput('add', word);
+            });
 
-    });
-    $('#new_product').bootstrapValidator({
-        feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-            title: {
-                validators: {
-                    notEmpty: {
-                        message: 'The Product Title/Name is required and cannot be empty'
-                    }
-                }
+        });
+        $('#new_product').bootstrapValidator({
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
             },
-        }
-    })
-        .on('success.form.bv', function(e) {
-            // Prevent form submission
-            e.preventDefault();
+            fields: {
+                title: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The Product Title/Name is required and cannot be empty'
+                        }
+                    }
+                },
+            }
+        })
+                .on('success.form.bv', function (e) {
+                    // Prevent form submission
+                    e.preventDefault();
 
-            // Get the form instance
-            var $form = $(e.target);
-            // Get the BootstrapValidator instance
-            var bv = $form.data('bootstrapValidator');
-            // Use Ajax to submit form data
-            $.post($form.attr('action'), $form.serialize(), function(result) {
-                // ... Process the result ...
-                //$('#new_product').trigger("reset");
-                $('#new_product').data('bootstrapValidator').resetForm(true);
-
-
-                /*                $(".message").html('Product Saved!'); 
-                $(".message").addClass("alert alert-success");*/
-
-                var opts = {
-                    "closeButton": true,
-                    "debug": false,
-                    "positionClass": "toast-top-right",
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "1000",
-                    "timeOut": "5000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
-                };
-
-                toastr.success("Product Saved!", "Great", opts);
+                    // Get the form instance
+                    var $form = $(e.target);
+                    // Get the BootstrapValidator instance
+                    var bv = $form.data('bootstrapValidator');
+                    // Use Ajax to submit form data
+                    $.post($form.attr('action'), $form.serialize(), function (result) {
+                        // ... Process the result ...
+                        //$('#new_product').trigger("reset");
+                        $('#new_product').data('bootstrapValidator').resetForm(true);
 
 
-                window.location = '<?php echo admin_url("products"); ?>'
-            }, 'json');
-        });
-});
+                        /*                $(".message").html('Product Saved!');
+                         $(".message").addClass("alert alert-success");*/
+
+                        var opts = {
+                            "closeButton": true,
+                            "debug": false,
+                            "positionClass": "toast-top-right",
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        };
+
+                        toastr.success("Product Saved!", "Great", opts);
+
+
+                        window.location = '<?php echo admin_url("products"); ?>'
+                    }, 'json');
+                });
+    });
 </script>
 <?php $this->load->view('dashboard/includes/footer'); ?>
 <script src="<?php echo site_url(); ?>neon-x/assets/js/bootstrap-tagsinput.min.js" id="script-resource-8"></script>
 <script src="<?php echo site_url(); ?>neon-x/assets/js/fileinput.js" id="script-resource-7"></script>
-<?php get_uploader_js( 'uploads/products/'); ?>
+<?php get_uploader_js('uploads/products/'); ?>
