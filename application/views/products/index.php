@@ -12,7 +12,7 @@
         <div class="col-md-5">
             <!--<div id="stars-existing" class="starrr" data-rating='4'></div>-->
             <h3> by - <?php l($product->outlet_name, outlet_url($product->outlet_slug)) ?>  Pace 2 Lahore</h3>
-            <h3><?php echo $product->vendor ?></h3>
+            <h3><?php echo $product->vender ?></h3>
             <p><?php echo $product->description ?></p>
             <?php if ($product->fixed_price) { ?>
                 <h2><?php echo $product->price . ' PKR' ?></h2>
@@ -20,7 +20,7 @@
                 ?>
                 <strong> <strike><?php echo $product->price . ' PKR ' ?></strike></strong><span>save <?php echo $product->discount . '%'; ?></span>
                 <h2><?php echo $product->discounted_price . ' PKR' ?></h2>
-                <?php }
+            <?php }
             ?>
             <div class="fb-like" data-href="<?php echo product_url($product); ?>" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div>
         </div>
@@ -28,7 +28,7 @@
             <?php foreach ($product->tags as $key => $t) {
                 ?>
                 <a href="<?php echo tag_url($t) ?>" class="btn btn-info navbar-btn"><?php echo '#' . $t->tag; ?></a>
-                <?php }
+            <?php }
             ?>
             <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d27212.597353388!2d74.35105740268554!3d31.508372891758526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sPace%2C+Gulberg+III%2C+Lahore%2C+Punjab%2C+Pakistan!5e0!3m2!1sen!2s!4v1388302399848" width="280" height="280" frameborder="0" style="border:0"></iframe>
             <div class="fb-facepile" data-href="https://www.facebook.com/marketify.pk" data-max-rows="1" data-colorscheme="light" data-size="medium" data-show-count="false"></div>

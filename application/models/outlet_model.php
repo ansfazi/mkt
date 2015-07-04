@@ -41,7 +41,6 @@ class outlet_model extends CI_Model {
     }
 
     public function save_outlet() {
-
         $data = array(
             // 'name'             => $this->input->post('name'),
             'address'          => $this->input->post('address'),
@@ -61,8 +60,12 @@ class outlet_model extends CI_Model {
 
         //$data['slug'] = $this->slug->create_uri($data);
 
-        $insert   = $this->db->insert($this->db->dbprefix('outlets'), $data);
-        $offer_id = $this->db->insert_id();
+        $this->db->where('uid', $this->session->userdata('user_id'));
+        $insert = $this->db->update($this->db->dbprefix('outlets'), $data);
+
+//        $insert   = $this->db->insert($this->db->dbprefix('outlets'), $data);
+//        $offer_id = $this->db->insert_id();
+
 
         if ($insert) {
             return true;

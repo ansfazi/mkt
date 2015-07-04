@@ -97,7 +97,7 @@ class products_model extends CI_Model {
 
     public function add($product) {
         $data['title']            = $product['title'];
-        $data['vendor']           = $product['vendor'];
+        $data['vender']           = $product['vender'];
         $data['price']            = $product['price'];
         if ($product['discount'] > 0)
             $data['discounted_price'] = $this->d_price($product['price'], $product['discount']);

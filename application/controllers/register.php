@@ -61,6 +61,9 @@ class Register extends CI_Controller {
         $outletResponse = $this->outlet_model->save_outlet();  // Save Outlet Data
 
         if ($outletResponse) {
+            $outlets              = $this->outlet_model->get_outlets($this->session->userdata('user_id'));
+            $this->session->set_userdata(array('outlets' => $outlets));
+            redirect('dashboard');
             $data['main_content'] = 'outlet-approval';
             $this->load->view('includes/template', $data);
         } else {
